@@ -1,8 +1,25 @@
-.navbar {
-    justify-content: center;
+@import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+
+h1 {
+    text-align: center;
+    padding: 15px;
     color: white;
+    font-family: 'Arvo', serif;
 }
 
-.card-body {
-    padding: 2.5%;
-  }
+.navbar-nav {
+    display: inline-block;
+}
+
+.navbar-default {
+    text-align: center;
+}
+
+nav {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+.btn {
+    padding: 5px;
+}
