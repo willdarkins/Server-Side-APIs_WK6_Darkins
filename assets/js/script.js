@@ -63,13 +63,13 @@ var getUv = function (lat, lon) {
 }
 
 var getFiveDayForecast = function (city) {
-    var fiveDayApiUrl = 'api.openweathermap.org/data/2.5/forecast?q='+ city +'&appid=08c050bc124b048247b7377940b748b0';
+    var fiveDayApiUrl = 'api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=08c050bc124b048247b7377940b748b0'
 
     fetch(fiveDayApiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
                 console.log(data);
-                displayFiveDay(data, city);
+                displayFiveDay(data,city);
             })
         } else {
             alert('ERROR: ' + city + ' does not have five-day forecast. Please input name of real city.')
@@ -125,8 +125,5 @@ var displayWeather = function (weather, searchTerm) {
 
 };
 
-var displayFiveDay = function(weather, searchTerm) {
-
-}
 
 userFormEl.addEventListener('submit', citySubmitHandler);
