@@ -63,12 +63,12 @@ var getUv = function (lat, lon) {
 }
 
 var getFiveDayForecast = function (city) {
-    var fiveDayApiUrl = 'api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=08c050bc124b048247b7377940b748b0'
+    var fiveDayApiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=imperial&appid=08c050bc124b048247b7377940b748b0'
 
     fetch(fiveDayApiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                console.log(data);
+                console.log(response,data);
                 displayFiveDay(data,city);
             })
         } else {
@@ -84,6 +84,7 @@ var citySubmitHandler = function (event) {
 
     if (cityName) {
         getCityForecasts(cityName);
+        getFiveDayForecast(cityName);
         cityInputEl.value = '';
     } else {
         alert('Please enter a city name to display forecasts');
@@ -122,8 +123,10 @@ var displayWeather = function (weather, searchTerm) {
     humidityEl.appendChild(humidityContainer);
     forecastContainerEl.appendChild(humidityEl);
 
-
 };
 
+var displayFiveDay = function(weather,searchTerm) {
+
+}
 
 userFormEl.addEventListener('submit', citySubmitHandler);
