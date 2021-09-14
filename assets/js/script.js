@@ -25,20 +25,42 @@ var getUv = function (lat, lon) {
     fetch(uvApiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                console.log(data);
+                console.log(data.current.uvi);
+                var uviIndex = data.current.uvi;
+                var uviEl = document.createElement('div');
+                var uviContainer = document.createElement('span');
+                var uviSpanNum = document.createElement('span')
+                uviSpanNum.textContent = uviIndex
+                uviContainer.textContent = 'UV Index: ' + uviSpanNum.textContent;
+                uviEl.appendChild(uviContainer);
+                forecastContainerEl.append(uviEl);
+                if(uviIndex >= 0 && uviIndex < 3) {
+                    uviContainer.style.backgroundColor = 'green'
+                    uviContainer.style.color = 'white'
+                }
+                else if(uviIndex >= 3 && uviIndex < 5) {
+                    uviContainer.style.backgroundColor = 'yellow'
+                    uviContainer.style.color = 'white'
+                }
+                else if(uviIndex >= 5 && uviIndex < 7) {
+                    uviSpanNum.style.backgroundColor = 'orange'
+                    uviSpanNum.style.color = 'white'
+                }
+                else if(uviIndex >= 8 && uviIndex < 10) {
+                    uviContainer.style.backgroundColor = 'orange'
+                    uviContainer.style.color = 'white'
+                }
+                else {
+                    uviContainer.style.backgroundColor = 'purple'
+                    uviContainer.style.color = 'white'
+                }
             })
         } else {
             console.log(response);
         }
-        var uviIndex = lat.lon.current.uvi;
-        var uviEl = document.createElement('div');
-        var uviContainer = document.createElement('span');
-        uviContainer.textContent = 'UV Index: ' + uviIndex;
-        uviEl.appendChild(uviContainer);
-        forecastContainerEl.append(uviEl);
+        
     })
 }
-
 
 var getFiveDayForecast = function (city) {
     var fiveDayApiUrl = 'api.openweathermap.org/data/2.5/forecast?q='+ city +'&appid=08c050bc124b048247b7377940b748b0';
@@ -70,6 +92,7 @@ var citySubmitHandler = function (event) {
 
 var displayWeather = function (weather, searchTerm) {
     forecastContainerEl.textContent = ''
+    
     var weatherCartoon = weather.weather[0].icon;
     var weatherImage = document.createElement('img')
     weatherImage.src = 'https://openweathermap.org/img/w/' + weatherCartoon + '.png';
@@ -95,9 +118,10 @@ var displayWeather = function (weather, searchTerm) {
     var humidity = weather.main.humidity;
     var humidityEl = document.createElement('div');
     var humidityContainer = document.createElement('span');
-    humidityContainer.textContent = 'Humidity: ' + humidity + ' %';
+    humidityContainer.textContent = 'Humidity: ' + humidity + '%';
     humidityEl.appendChild(humidityContainer);
     forecastContainerEl.appendChild(humidityEl);
+
 
 };
 
