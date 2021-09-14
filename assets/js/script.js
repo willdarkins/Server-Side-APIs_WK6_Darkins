@@ -36,13 +36,13 @@ var getFiveDayForecast = function (city) {
     })
 }
 
-var getUv = function (latitude, longitude) {
+var getUv = function (lat, lon) {
     var uvApiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=&appid=' + '&units=imperial&08c050bc124b048247b7377940b748b0='
     fetch(uvApiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                displayWeather(lat, lon);
-                console.log(response);
+                displayWeather(data, lat, lon);
+                console.log(data);
             })
         }
     })
@@ -51,10 +51,12 @@ var getUv = function (latitude, longitude) {
 var citySubmitHandler = function (event) {
     event.preventDefault();
     var cityName = cityInputEl.value.trim();
+    var lat = data.lat;
+    var lon = data.lon;
 
     if (cityName) {
         getCityForecasts(cityName);
-        getUv(cityName)
+        getUv(lat, lon);
         cityInputEl.value = '';
     } else {
         alert('Please enter a city name to display forecasts');
@@ -92,8 +94,7 @@ var displayWeather = function (weather, searchTerm) {
     humidityEl.appendChild(humidityContainer);
     forecastContainerEl.appendChild(humidityEl);
 
-    var latitude = weather.coord.lat;
-    var longitude = weather.coord.lon;
+
 
 
     //  var uviIndex = weather.current.uvi;
