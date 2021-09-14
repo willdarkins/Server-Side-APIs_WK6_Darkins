@@ -6,13 +6,15 @@ var pastSearchEl = document.querySelector('#past-search')
 var fiveDayEl = document.querySelector('#five-day-forecast')
 
 
+
 var getCityForecasts = function (city) {
-    var currentApiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=08c050bc124b048247b7377940b748b0'
+    var currentApiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=08c050bc124b048247b7377940b748b0'
 
     fetch(currentApiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
                 displayWeather(data, city);
+                console.log(data);
             });
         } else {
             alert('ERROR: ' + city + ' does not have a forecast. Please input name of real city.')
@@ -20,19 +22,29 @@ var getCityForecasts = function (city) {
     })
 }
 
-var getFiveDayForecast = function(city) {
-    var fiveDayApiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&08c050bc124b048247b7377940b748b0='
+var getFiveDayForecast = function (city) {
+    var fiveDayApiUrl = 'api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=08c050bc124b048247b7377940b748b0'
 
-    fetch(fiveDayApiUrl).then(function(response) {
-        if(response.ok) {
-            response.json().then(function(data) {
+    fetch(fiveDayApiUrl).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (data) {
                 displayFiveDay(data, city);
-                console.log(data);
             })
         } else {
             alert('ERROR: ' + city + ' does not have five-day forecast. Please input name of real city.')
         }
 
+    })
+}
+
+var getUv = function (lat, lon) {
+    var uvApiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + latitude + '&lon=' + longitude + '&exclude=current, minutely, alerts&appid=' + '&units=imperial&08c050bc124b048247b7377940b748b0='
+    fetch(uvApiUrl).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (data) {
+                displayUv(lat, lon);
+            })
+        }
     })
 }
 
@@ -46,33 +58,48 @@ var citySubmitHandler = function (event) {
     } else {
         alert('Please enter a city name to display forecasts');
     }
-    console.log(event);
+    // console.log(event);
 };
 
 var displayWeather = function (weather, searchTerm) {
     forecastContainerEl.textContent = ''
+    var weatherCartoon = weather.weather[0].icon;
+    var weatherImage = document.createElement('img')
+    weatherImage.src = 'https://openweathermap.org/img/w/' + weatherCartoon + '.png';
+    var weatherHolder = document.createElement('span');
+    weatherHolder.appendChild(weatherImage);
     citySearchTermEl.textContent = searchTerm + ' (' + moment().format('l') + ')';
-    
+    citySearchTermEl.appendChild(weatherHolder);
+
     var temp = weather.main.temp;
     var tempEl = document.createElement('div');
     var tempContainer = document.createElement("span");
-    tempContainer.textContent = "Temp: " + temp;
+    tempContainer.textContent = 'Temp: ' + temp + '°F';
     tempEl.appendChild(tempContainer);
     forecastContainerEl.appendChild(tempEl);
 
     var wind = weather.wind.speed;
     var windEl = document.createElement('div');
     var windContainer = document.createElement('span');
-    windContainer.textContent = "Wind: " + wind;
+    windContainer.textContent = 'Wind: ' + wind + ' MPH';
     windEl.appendChild(windContainer);
     forecastContainerEl.appendChild(windEl);
 
     var humidity = weather.main.humidity;
     var humidityEl = document.createElement('div');
     var humidityContainer = document.createElement('span');
-    humidityContainer.textContent = 'Humidity: ' + humidity;
+    humidityContainer.textContent = 'Humidity: ' + humidity + ' %';
     humidityEl.appendChild(humidityContainer);
     forecastContainerEl.appendChild(humidityEl);
+
+    var latitude = weather.coord.lat;
+    var longitude = weather.coord.lon;
+    var uviIndex = weather.current.uvi;
+    var uviEl = document.createElement('div');
+    var uviContainer = document.createElement('span');
+    uviContainer.textContent = 'UV Index: ' + uviIndex;
+    uviEl.appendChild(uviContainer);
+    forecastContainerEl.appendChild(uviEl);
 
 };
 
