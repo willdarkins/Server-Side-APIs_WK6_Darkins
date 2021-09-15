@@ -23,3 +23,7 @@ nav {
 .btn {
     padding: 5px;
 }
+
+.card {
+    border: solid black 1px;
+}
