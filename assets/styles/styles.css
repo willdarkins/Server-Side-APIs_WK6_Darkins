@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 h1 {
     text-align: center;
     padding: 15px;
@@ -18,6 +24,7 @@ h1 {
 nav {
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    max-width: 100%;
 }
 
 .btn {
@@ -26,4 +33,16 @@ nav {
 
 .card {
     border: solid black 1px;
+}
+
+#five-day-forecast {
+    display: flex;
+    flex-direction: row;
+}
+
+#forecast-box {
+    border: solid black 1px;
+    padding: 20px;
+    display: none;
+    max-width: fit-content;
 }
