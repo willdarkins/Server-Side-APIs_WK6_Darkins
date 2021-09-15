@@ -130,49 +130,50 @@ var displayWeather = function (weather, searchTerm) {
 };
 
 var displayFiveDay = function (weather) {
-    
-    var shouldSkip = false;
-    
-    for(i = 0; i < weather.list.length; i++) {
+
+    for (i = 0; i < weather.list.length; i++) {
 
         var daytime = weather.list[i].dt_txt.split(" ");
         var time = daytime[1];
-        var noon = weather.list[i];
+        var noon = weather.list[i]
 
-        var forecastBox = document.createElement('div');
-        fiveDayEl.appendChild(forecastBox);
+        if (time === '12:00:00') {
 
-        var date = document.createElement('span');
-        date.textContent = 'test date';
-        fiveDayEl.appendChild(date);
+            var forecastBox = document.createElement('div');
+            fiveDayEl.appendChild(forecastBox);
 
-        var weatherCartoon = noon.weather[0].icon;
-        var weatherImage = document.createElement('img')
-        weatherImage.src = 'https://openweathermap.org/img/w/' + weatherCartoon + '.png';
-        var weatherHolder = document.createElement('div');
-        weatherHolder.appendChild(weatherImage);
-        fiveDayEl.appendChild(weatherHolder);
+            var date = document.createElement('span');
+            date.textContent = 'test date';
+            fiveDayEl.appendChild(date);
 
-        var fiveTemp = noon.main.temp;
-        var fiveTempEl = document.createElement('div');
-        var fiveTempContainer = document.createElement("span");
-        fiveTempContainer.textContent = 'Temp: ' + fiveTemp + '°F';
-        fiveTempEl.appendChild(fiveTempContainer);
-        fiveDayEl.appendChild(fiveTempEl);
+            var weatherCartoon = noon.weather[0].icon;
+            var weatherImage = document.createElement('img')
+            weatherImage.src = 'https://openweathermap.org/img/w/' + weatherCartoon + '.png';
+            var weatherHolder = document.createElement('div');
+            weatherHolder.appendChild(weatherImage);
+            fiveDayEl.appendChild(weatherHolder);
 
-        var fiveWind = noon.wind.speed;
-        var fiveWindEl = document.createElement('div');
-        var fiveWindContainer = document.createElement('span');
-        fiveWindContainer.textContent = 'Wind: ' + fiveWind + ' MPH';
-        fiveWindEl.appendChild(fiveWindContainer);
-        fiveDayEl.appendChild(fiveWindEl);
+            var fiveTemp = noon.main.temp;
+            var fiveTempEl = document.createElement('div');
+            var fiveTempContainer = document.createElement("span");
+            fiveTempContainer.textContent = 'Temp: ' + fiveTemp + '°F';
+            fiveTempEl.appendChild(fiveTempContainer);
+            fiveDayEl.appendChild(fiveTempEl);
 
-        var fiveHumidity = noon.main.humidity;
-        var fiveHumidityEl = document.createElement('div');
-        var fiveHumidityContainer = document.createElement('span');
-        fiveHumidityContainer.textContent = 'Humidity: ' + fiveHumidity + '%';
-        fiveHumidityEl.appendChild(fiveHumidityContainer);
-        fiveDayEl.appendChild(fiveHumidityEl);
+            var fiveWind = noon.wind.speed;
+            var fiveWindEl = document.createElement('div');
+            var fiveWindContainer = document.createElement('span');
+            fiveWindContainer.textContent = 'Wind: ' + fiveWind + ' MPH';
+            fiveWindEl.appendChild(fiveWindContainer);
+            fiveDayEl.appendChild(fiveWindEl);
+
+            var fiveHumidity = noon.main.humidity;
+            var fiveHumidityEl = document.createElement('div');
+            var fiveHumidityContainer = document.createElement('span');
+            fiveHumidityContainer.textContent = 'Humidity: ' + fiveHumidity + '%';
+            fiveHumidityEl.appendChild(fiveHumidityContainer);
+            fiveDayEl.appendChild(fiveHumidityEl);
+        }
     }
 }
 
