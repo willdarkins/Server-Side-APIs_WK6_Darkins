@@ -133,8 +133,9 @@ var displayFiveDay = function (weather) {
 
     var daytime = weather.list[3].dt_txt.split(" ");
     var time = daytime[1]
+    console.log(time);
     var noon = weather.list[3];
-    if (time === '03:00:00') {
+    weather.list.forEach(day => {
         
         var forecastBox = document.createElement('div');
         fiveDayEl.appendChild(forecastBox);
@@ -170,8 +171,7 @@ var displayFiveDay = function (weather) {
         fiveHumidityContainer.textContent = 'Humidity: ' + fiveHumidity + '%';
         fiveHumidityEl.appendChild(fiveHumidityContainer);
         fiveDayEl.appendChild(fiveHumidityEl);
-    }
-
+    })
 
 }
 
