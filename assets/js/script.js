@@ -130,7 +130,7 @@ var displayWeather = function (weather, searchTerm) {
 };
 
 var displayFiveDay = function (weather) {
-
+    console.log(weather);
     for (i = 0; i < weather.list.length; i++) {
 
         var daytime = weather.list[i].dt_txt.split(" ");
@@ -140,7 +140,7 @@ var displayFiveDay = function (weather) {
         if (time === '12:00:00') {
 
             var forecastBox = document.createElement('div');
-            fiveDayEl.appendChild(forecastBox);
+            fiveDayEl.append(forecastBox);
 
             var date = document.createElement('span');
             date.textContent = 'test date';
