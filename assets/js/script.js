@@ -130,13 +130,15 @@ var displayWeather = function (weather, searchTerm) {
 };
 
 var displayFiveDay = function (weather) {
+    
+    var shouldSkip = false;
+    
+    for(i = 0; i < weather.list.length; i++) {
 
-    var daytime = weather.list[3].dt_txt.split(" ");
-    var time = daytime[1]
-    console.log(time);
-    var noon = weather.list[3];
-    weather.list.forEach(day => {
+        var daytime = weather.list[i].dt_txt.split(" ");
+        var time = daytime[1];
         
+
         var forecastBox = document.createElement('div');
         fiveDayEl.appendChild(forecastBox);
 
@@ -171,8 +173,7 @@ var displayFiveDay = function (weather) {
         fiveHumidityContainer.textContent = 'Humidity: ' + fiveHumidity + '%';
         fiveHumidityEl.appendChild(fiveHumidityContainer);
         fiveDayEl.appendChild(fiveHumidityEl);
-    })
-
+    }
 }
 
 userFormEl.addEventListener('submit', citySubmitHandler);
