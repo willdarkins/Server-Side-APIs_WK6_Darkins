@@ -137,7 +137,7 @@ var displayFiveDay = function (weather) {
 
         var daytime = weather.list[i].dt_txt.split(" ");
         var time = daytime[1];
-        
+        var noon = weather.list[i];
 
         var forecastBox = document.createElement('div');
         fiveDayEl.appendChild(forecastBox);
