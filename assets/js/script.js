@@ -19,7 +19,15 @@ var loadCities = function () {
         savedCityButton.classList.add('btn');
         savedCityButton.style.backgroundColor = 'MediumTurquoise';
         pastSearchEl.appendChild(savedCityButton);
+
+        savedCityButton.addEventListener('click', function (event) {
+            city = event.target.textContent;
+            getCityForecasts(city);
+            getFiveDayForecast(city);
+            console.log(city);
+        })
     })
+    
 }
 
 var citySubmitHandler = function (event) {
@@ -43,7 +51,12 @@ var citySubmitHandler = function (event) {
         savedCityButton.classList.add('btn');
         savedCityButton.style.backgroundColor = 'MediumTurquoise';
         pastSearchEl.appendChild(savedCityButton);
-        savedCityButton.addEventListener('click', getCityForecasts(savedCityButton.textContent), getFiveDayForecast(savedCityButton.textContent))
+
+        savedCityButton.addEventListener('click', function (event) {
+            cityName = event.target.textContent;
+            getCityForecasts(cityName);
+            getFiveDayForecast(cityName);
+        })
 
         cityInputEl.value = '';
 
@@ -52,13 +65,13 @@ var citySubmitHandler = function (event) {
     }
 };
 
-
 var getCityForecasts = function (city) {
     var currentApiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=08c050bc124b048247b7377940b748b0'
 
     fetch(currentApiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
+                console.log('fired');
                 displayWeather(data, city);
                 getUv(data.coord.lat, data.coord.lon);
             });
@@ -102,8 +115,6 @@ var getUv = function (lat, lon) {
                     uviContainer.style.color = 'white'
                 }
             })
-        } else {
-            console.log(response);
         }
 
     })
