@@ -14,7 +14,11 @@ var saveCities = function () {
 var loadCities = function () {
     cities = JSON.parse(localStorage.getItem('cities')) || [];
     cities.forEach(city => {
-
+        var savedCityButton = document.createElement('button');
+        savedCityButton.textContent = city.text;
+        savedCityButton.classList.add('btn');
+        savedCityButton.style.backgroundColor = 'MediumTurquoise';
+        pastSearchEl.appendChild(savedCityButton);
     })
 }
 
