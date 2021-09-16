@@ -45,14 +45,14 @@ nav {
 #five-day-forecast {
     display: flex;
     flex-direction: row;
-    margin: auto;
+    justify-content: space-around;
 }
 
 #forecast-box {
-    border: solid black 1px;
+    border: solid black .5px;
     padding: 20px;
     display: none;
-    max-width: fit-content;
+    max-width: 100;
 }
 
 #search-square {

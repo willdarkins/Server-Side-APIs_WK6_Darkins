@@ -154,7 +154,7 @@ var displayWeather = function (weather, searchTerm) {
 
 var displayFiveDay = function (weather) {
     fiveDayEl.textContent = '';
-    
+
     for (i = 0; i < weather.list.length; i++) {
 
         var daytime = weather.list[i].dt_txt.split(" ");
@@ -172,7 +172,7 @@ var displayFiveDay = function (weather) {
             var weatherBox = document.createElement('div');
             weatherBox.style.border = 'solid black 2px';
             weatherBox.style.backgroundColor = 'SteelBlue';
-            weatherBox.style.padding = '3px';
+            weatherBox.style.padding = '10px';
             fiveDayEl.appendChild(weatherBox);
 
 
