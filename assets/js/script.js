@@ -217,7 +217,7 @@ var displayFiveDay = function (weather) {
 }
 
 userFormEl.addEventListener('submit', citySubmitHandler);
-
+loadCities();
 
 
 
