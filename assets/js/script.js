@@ -43,6 +43,7 @@ var citySubmitHandler = function (event) {
         savedCityButton.classList.add('btn');
         savedCityButton.style.backgroundColor = 'MediumTurquoise';
         pastSearchEl.appendChild(savedCityButton);
+        savedCityButton.addEventListener('click', getCityForecasts(savedCityButton.textContent), getFiveDayForecast(savedCityButton.textContent))
 
         cityInputEl.value = '';
 
@@ -224,6 +225,3 @@ var displayFiveDay = function (weather) {
 
 userFormEl.addEventListener('submit', citySubmitHandler);
 loadCities();
-
-
-
