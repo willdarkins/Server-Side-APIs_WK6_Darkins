@@ -21,13 +21,15 @@
 
     <section class="search-and-forecast-container">
 
-        <div class="row">
-            <div class="col-md-3">
+        <div class="row m-1">
+            <div id="search-square" class="col-md-3">
                 <h3>Search for a city:</h3>
-                <form id="user-form">
+                <form id="user-form" class="">
                     <input id="cityname" class="form-control" type="text" placeholder="city"
                         aria-label="default input example">
-                    <button class="btn btn-primary" type="submit">Search</button>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary p-2" type="submit">Search</button>
+                    </div>
                 </form>
             </div>
 
@@ -40,8 +42,8 @@
 
     <section class="past-search-and-five-day">
 
-        <div class="row">
-            <div id="past-search" class="col-md-3"></div>
+        <div class="row m-2">
+            <div id="past-search" class="col-md-3 gap-2"></div>
             <div id="five-day-forecast" class="col-md-9 five-day-weather">
             </div>
         </div>

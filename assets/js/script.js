@@ -15,9 +15,9 @@ var loadCities = function () {
     cities = JSON.parse(localStorage.getItem('cities')) || [];
     cities.forEach(city => {
         var savedCityButton = document.createElement('button');
-        savedCityButton.textContent(city.text);
+        savedCityButton.textContent = city.text;
         savedCityButton.classList.add('btn');
-        savedCityButton.style.backgroundColor = 'AliceBlue';
+        savedCityButton.style.backgroundColor = 'MediumTurquoise';
         pastSearchEl.appendChild(savedCityButton);
     })
 }
@@ -36,7 +36,7 @@ var citySubmitHandler = function (event) {
             text: savedCity
         }
         cities.push(completeTask);
-        saveCities();
+        saveCities()
 
         cityInputEl.value = '';
 
@@ -153,7 +153,8 @@ var displayWeather = function (weather, searchTerm) {
 };
 
 var displayFiveDay = function (weather) {
-
+    fiveDayEl.textContent = '';
+    
     for (i = 0; i < weather.list.length; i++) {
 
         var daytime = weather.list[i].dt_txt.split(" ");
@@ -216,7 +217,7 @@ var displayFiveDay = function (weather) {
 }
 
 userFormEl.addEventListener('submit', citySubmitHandler);
-loadCities();
 
+loadCities();
 
 
