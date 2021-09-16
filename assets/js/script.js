@@ -33,7 +33,7 @@ var loadCities = function () {
             getFiveDayForecast(city);
         })
     })
-    
+
 }
 
 // Function to accept city inputs
@@ -107,7 +107,7 @@ var getUv = function (lat, lon) {
                 uviContainer.textContent = 'UV Index: ' + uviSpanNum.textContent;
                 uviEl.appendChild(uviContainer);
                 forecastContainerEl.append(uviEl);
-            // Conditional statements apply color correct UV Index definitions
+                // Conditional statements apply color correct UV Index definitions
                 if (uviIndex >= 0 && uviIndex < 3) {
                     uviContainer.style.backgroundColor = 'green'
                     uviContainer.style.color = 'white'
@@ -197,36 +197,36 @@ var displayFiveDay = function (weather) {
     // Iterating over array of three-hour weather forecast objects
     for (i = 0; i < weather.list.length; i++) {
 
-    // Splitting time string from three-hour weather object to build variable
+        // Splitting time string from three-hour weather object to build variable
         var daytime = weather.list[i].dt_txt.split(" ");
         var time = daytime[1];
         var noon = weather.list[i]
 
-    // Splitting date string from three-hour weather object to isolate day, month and year from specific objects
+        // Splitting date string from three-hour weather object to isolate day, month and year from specific objects
         var dateScript = weather.list[i].dt_txt.split(" ");
         var listDate = dateScript[0].split('-');
         var year = listDate[0];
         var month = listDate[1];
         var day = listDate[2];
 
-    // Conditional statement to check object times against 12:00:00pm standard for dispaly 
+        // Conditional statement to check object times against 12:00:00pm standard for dispaly 
         if (time === '12:00:00') {
 
-    // Dynamically created div to hold weather information in aesthetic manner
+            // Dynamically created div to hold weather information in aesthetic manner
             var weatherBox = document.createElement('div');
             weatherBox.style.border = 'solid black 2px';
             weatherBox.style.backgroundColor = 'SteelBlue';
             weatherBox.style.padding = '10px';
             fiveDayEl.appendChild(weatherBox);
 
-    // Dynamically created span to hold concatenated current date string header
+            // Dynamically created span to hold concatenated current date string header
             var date = document.createElement('span');
             date.textContent = month + '/' + day + '/' + year;
             date.classList.add('h4');
             date.style.color = 'white';
             weatherBox.appendChild(date);
 
-    // Dynamically created image and div to hold associated image to represent weather for day
+            // Dynamically created image and div to hold associated image to represent weather for day
             var weatherCartoon = noon.weather[0].icon;
             var weatherImage = document.createElement('img')
             weatherImage.src = 'https://openweathermap.org/img/w/' + weatherCartoon + '.png';
@@ -234,7 +234,7 @@ var displayFiveDay = function (weather) {
             weatherHolder.appendChild(weatherImage);
             weatherBox.appendChild(weatherHolder);
 
-    // Dynamically created div to hold span that displays temperature for specified day
+            // Dynamically created div to hold span that displays temperature for specified day
             var fiveTemp = noon.main.temp;
             var fiveTempEl = document.createElement('div');
             var fiveTempContainer = document.createElement("span");
@@ -243,7 +243,7 @@ var displayFiveDay = function (weather) {
             fiveTempEl.appendChild(fiveTempContainer);
             weatherBox.appendChild(fiveTempEl);
 
-    // Dynamically created div to hold span that displays wind speed for specified day
+            // Dynamically created div to hold span that displays wind speed for specified day
             var fiveWind = noon.wind.speed;
             var fiveWindEl = document.createElement('div');
             var fiveWindContainer = document.createElement('span');
@@ -252,7 +252,7 @@ var displayFiveDay = function (weather) {
             fiveWindEl.appendChild(fiveWindContainer);
             weatherBox.appendChild(fiveWindEl);
 
-    // Dynamicaslly created div to hold span that displays humidity for specified day
+            // Dynamicaslly created div to hold span that displays humidity for specified day
             var fiveHumidity = noon.main.humidity;
             var fiveHumidityEl = document.createElement('div');
             var fiveHumidityContainer = document.createElement('span');
