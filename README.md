@@ -51,6 +51,12 @@ Thank You
 ## Mockup
 ***
 Below are screen shots of the application's functionality:
+![Screenshot_1](https://user-images.githubusercontent.com/84754257/133686567-2741ed08-03cf-419f-b52a-80fade3a77f4.JPG)
+![Screenshot_2](https://user-images.githubusercontent.com/84754257/133686579-094ae748-a3fb-43e9-b8b9-5df390bf577e.JPG)
 
 Below is a short video diplaying the application's functionality:
+
+
+https://user-images.githubusercontent.com/84754257/133686586-193dde12-0b8d-41e5-b0bb-2523244b70b5.mp4
+
 
