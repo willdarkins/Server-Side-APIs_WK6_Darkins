@@ -22,6 +22,7 @@ var loadCities = function () {
 
         savedCityButton.addEventListener('click', function (event) {
             city = event.target.textContent;
+            forecastSquare.setAttribute('style', 'display: block')
             getCityForecasts(city);
             getFiveDayForecast(city);
             console.log(city);
